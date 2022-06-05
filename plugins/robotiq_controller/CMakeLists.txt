@@ -42,7 +42,7 @@ add_library(RobotiqController SHARED RobotiqController.cpp)
 target_link_libraries(RobotiqController
     ignition-common${IGN_COMMON_VER}::ignition-common${IGN_COMMON_VER}
     ignition-gazebo${IGN_GAZEBO_VER}::ignition-gazebo${IGN_GAZEBO_VER})
-)
+
 
 
 

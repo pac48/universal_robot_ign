@@ -52,7 +52,7 @@ def generate_launch_description():
                             {"ign_topic": "/world/default/model/ur10/joint_state"},
                         ],
                 output='screen')
-    ld.add_action(joint_state_publisher)
+    # ld.add_action(joint_state_publisher)
     #  ros->ign,  joint controller for ur10
     joint_controller=Node(package='universal_robot_ign', 
                 executable='joint_controller',
@@ -62,5 +62,7 @@ def generate_launch_description():
                             {"rate":200},
                            ],
                 output='screen') 
-    ld.add_action(joint_controller)          
+    # ld.add_action(joint_controller)
     return ld
+
+# generate_launch_description()

@@ -75,3 +75,5 @@ def generate_launch_description():
     )
     ld.add_action(ros_ign_bridge)
     return ld
+
+# generate_launch_description()

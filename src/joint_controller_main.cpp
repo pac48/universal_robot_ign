@@ -22,9 +22,11 @@ int main(int argc, char* argv[])
     std::vector<std::string> ign_joint_topics;
     int update_rate;
     // parameters
-    ros_node->declare_parameter("joint_names");
-    ros_node->declare_parameter("ign_joint_topics");
+    ros_node->declare_parameter("joint_names", std::vector<std::string>());
+    ros_node->declare_parameter("ign_joint_topics", std::vector<std::string>());
+    ros_node->declare_parameter("ign_topic", "");
     ros_node->declare_parameter("rate", 200);
+
     joint_names = ros_node->get_parameter("joint_names").as_string_array();
     ign_joint_topics = ros_node->get_parameter("ign_joint_topics").as_string_array();
     update_rate = ros_node->get_parameter("rate").as_int();
