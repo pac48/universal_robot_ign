@@ -87,9 +87,10 @@ target_link_libraries(universal_robot_ign
 )
 
 #executable node
-#add_executable(joint_state_publisher src/joint_state_publisher_main.cpp)
-#target_link_libraries(joint_state_publisher universal_robot_ign)
-#
+add_executable(joint_state_publisher src/joint_state_publisher_main.cpp src/joint_state_publisher.cpp)
+target_link_libraries(joint_state_publisher
+        universal_robot_ign)
+
 #add_executable(joint_controller src/joint_controller_main.cpp)
 #target_link_libraries(joint_controller universal_robot_ign)
 
@@ -128,9 +129,9 @@ install(TARGETS universal_robot_ign
 )
 
 # Install executables
-#install(TARGETS joint_state_publisher  joint_controller
-#  DESTINATION lib/universal_robot_ign
-#)
+install(TARGETS joint_state_publisher  #joint_controller
+  DESTINATION lib/universal_robot_ign
+)
 
 install(TARGETS RobotiqController 
     DESTINATION $ENV{HOME}/.ignition/gazebo/plugins

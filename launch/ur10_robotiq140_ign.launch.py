@@ -17,7 +17,7 @@ def generate_launch_description():
     pkg_universal_robot_ign = get_package_share_directory('universal_robot_ign')
     #data
     world_sdf_path=os.path.join(pkg_universal_robot_ign, 'resource', 'worlds', 'test_world.sdf') 
-    robot_xmacro_path=os.path.join(pkg_universal_robot_ign, 'resource', 'xmacro', 'ur10_robotiq140.sdf.xmacro') 
+    robot_xmacro_path=os.path.join(pkg_universal_robot_ign, 'resource', 'xmacro', 'ur10_robotiq140.sdf.xmacro')
     ign_config_path=os.path.join(pkg_universal_robot_ign, 'ign', 'gui.config')
     # ignition_simulator launch
     ignition_simulator = IncludeLaunchDescription(
@@ -46,24 +46,24 @@ def generate_launch_description():
         ign_joint_topics_list.append("/model/ur10/joint/%s/0/cmd_pos"%joint_name)
     
     # ros<-ign, joint state publisher for ur10
-    joint_state_publisher=Node(package='universal_robot_ign', 
-                executable='joint_state_publisher',
-                name="ur10_joint_state_publisher",
-                parameters=[{"joint_names": joint_names_list},
-                            {"ign_topic": "/world/default/model/ur10/joint_state"}
-                        ],
-                output='screen')
-    ld.add_action(joint_state_publisher)
+    # joint_state_publisher=Node(package='universal_robot_ign',
+    #             executable='joint_state_publisher',
+    #             name="ur10_joint_state_publisher",
+    #             parameters=[{"joint_names": joint_names_list},
+    #                         {"ign_topic": "/world/default/model/ur10/joint_state"}
+    #                     ],
+    #             output='screen')
+    # ld.add_action(joint_state_publisher)
     #  ros->ign,  joint controller for ur10
-    joint_controller=Node(package='universal_robot_ign', 
-                executable='joint_controller',
-                name="ur10_joint_controller",
-                parameters=[{"joint_names": joint_names_list},
-                            {"ign_joint_topics": ign_joint_topics_list},
-                            {"rate":200},
-                           ],
-                output='screen')
-    ld.add_action(joint_controller)
+    # joint_controller=Node(package='universal_robot_ign',
+    #             executable='joint_controller',
+    #             name="ur10_joint_controller",
+    #             parameters=[{"joint_names": joint_names_list},
+    #                         {"ign_joint_topics": ign_joint_topics_list},
+    #                         {"rate":200},
+    #                        ],
+    #             output='screen')
+    # ld.add_action(joint_controller)
     # ros->ign, ign bridge to control Robotiq140 Gripper
     ros_ign_bridge = Node(package='ros_ign_bridge',
             executable='parameter_bridge',
@@ -76,4 +76,4 @@ def generate_launch_description():
     ld.add_action(ros_ign_bridge)
     return ld
 
-# generate_launch_description()
+generate_launch_description()

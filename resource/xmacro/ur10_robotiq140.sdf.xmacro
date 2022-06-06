@@ -9,8 +9,8 @@
         <xmacro_block name="ur10" parent="__model__"/>
         <xmacro_block name="robotiq140" parent="ur10_robotiq140_joint"/>
         <joint name="ur10_robotiq140_joint" type="fixed">
-            <pose relative_to='wrist_3_link'>0 0.0922 0 ${-3.14159/2} ${-3.14159/2} 0</pose>
-            <parent>wrist_3_link</parent>
+            <pose relative_to='ft_link'>0 0.0922 0 ${-3.14159/2} ${-3.14159/2} 0</pose>
+            <parent>ft_link</parent>
             <child>robotiq_arg2f_base_link</child>
         </joint>
         <joint name="world_ur10_joint" type="fixed">
@@ -20,11 +20,11 @@
         <!--controller plugins for ur10-->
         <xmacro_block name="ur10_position_controller"/>
         <!--controller plugins for robotiq140-->
-        <plugin filename="RobotiqController" 
+        <plugin filename="RobotiqController"
                 name="ignition::gazebo::systems::RobotiqController">
             <fixed>false</fixed>
             <vel_scale>1.0</vel_scale>
-        </plugin>        
+        </plugin>
         <!--joint state publisher-->
         <plugin filename="ignition-gazebo-joint-state-publisher-system" 
                 name="ignition::gazebo::systems::JointStatePublisher">
