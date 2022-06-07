@@ -11,7 +11,8 @@
 			<pose relative_to="__model__">0 0 0 0 0 0</pose>
 			<inertial>
 				<pose>0 -5e-06 0.03145 0 -0 0</pose>
-				<mass>0.22652</mass>
+<!--				<mass>0.22652</mass>-->
+				<mass>2.2652</mass>
 				<inertia>
 					<ixx>0.00020005</ixx>
 					<ixy>-4.2442e-10</ixy>

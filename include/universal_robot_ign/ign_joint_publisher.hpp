@@ -25,7 +25,7 @@ public:
                       const std::vector<std::string>& ign_cmd_topics);
     ~IGNJointPublisher() {};
 
-    void setJointPositionCb(const sensor_msgs::msg::JointState::SharedPtr msg);
+    void setJointVelocityCb(const sensor_msgs::msg::JointState::SharedPtr msg);
 
 private:
     std::shared_ptr<ignition::transport::Node> ign_node_;

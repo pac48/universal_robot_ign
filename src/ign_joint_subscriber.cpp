@@ -52,7 +52,7 @@ sensor_msgs::msg::JointState IGNJointSubscriber::getJointStateMsg()
     //create  JointState msg
     current_joint_msg_.header.stamp = rclcpp::Clock().now();
     current_joint_msg_.header.frame_id = model_msg.name();
-    for(int i = 0; i < model_msg.joint_size () ; ++i){
+    for(int i = 0; i < model_msg.joint_size() ; ++i){
         if (joint_names_map_.find(model_msg.joint(i).name()) != joint_names_map_.end()) {
             int idx=joint_names_map_[model_msg.joint(i).name()];
             current_joint_msg_.position[idx]=model_msg.joint(i).axis1().position();

@@ -46,14 +46,14 @@ def generate_launch_description():
         ign_joint_topics_list.append("/model/ur10/joint/%s/0/cmd_pos"%joint_name)
     
     # ros<-ign, joint state publisher for ur10
-    # joint_state_publisher=Node(package='universal_robot_ign',
-    #             executable='joint_state_publisher',
-    #             name="ur10_joint_state_publisher",
-    #             parameters=[{"joint_names": joint_names_list},
-    #                         {"ign_topic": "/world/default/model/ur10/joint_state"}
-    #                     ],
-    #             output='screen')
-    # ld.add_action(joint_state_publisher)
+    joint_state_publisher=Node(package='universal_robot_ign',
+                executable='joint_state_publisher',
+                name="ur10_joint_state_publisher",
+                parameters=[{"joint_names": joint_names_list},
+                            {"ign_topic": "/world/default/model/ur10/joint_state"}
+                        ],
+                output='screen')
+    ld.add_action(joint_state_publisher)
     #  ros->ign,  joint controller for ur10
     # joint_controller=Node(package='universal_robot_ign',
     #             executable='joint_controller',
@@ -73,6 +73,24 @@ def generate_launch_description():
             ],
             output='screen'
     )
+    ld.add_action(ros_ign_bridge) # ros run ros_ign_bridge parameter_bridge /joint_states@sensor_msgs/msg/JointState@ignition.msgs.Model
+    ros_ign_bridge = Node(package='ros_ign_bridge',
+                          executable='parameter_bridge',
+                          arguments=["/world/default/model/ur10/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model"],
+                          remappings=[
+                              ("/world/default/model/ur10/joint_state", "/joint_states"),
+                          ],
+                          output='screen'
+                          )
+    ld.add_action(ros_ign_bridge) # ros run ros_ign_bridge parameter_bridge /joint_states@sensor_msgs/msg/JointState@ignition.msgs.Model
+    ros_ign_bridge = Node(package='ros_ign_bridge',
+                          executable='parameter_bridge',
+                          arguments=["/world/default/model/ur10/force_torque@geometry_msgs/msg/Wrench@ignition.msgs.Wrench"],
+                          remappings=[
+                              ("/world/default/model/ur10/force_torque", "/ft_data"),
+                          ],
+                          output='screen'
+                          )
     ld.add_action(ros_ign_bridge)
     return ld
 
