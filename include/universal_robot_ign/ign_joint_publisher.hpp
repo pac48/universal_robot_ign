@@ -26,6 +26,7 @@ public:
     ~IGNJointPublisher() {};
 
     void setJointVelocityCb(const sensor_msgs::msg::JointState::SharedPtr msg);
+    void setJointPositionCb(const sensor_msgs::msg::JointState::SharedPtr msg_goal, const sensor_msgs::msg::JointState::SharedPtr msg_cur);
 
 private:
     std::shared_ptr<ignition::transport::Node> ign_node_;

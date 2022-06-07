@@ -37,16 +37,27 @@ IGNJointPublisher::IGNJointPublisher(
     }
 }
 
-void IGNJointPublisher::setJointVelocityCb(const sensor_msgs::msg::JointState::SharedPtr msg)
-{
+void IGNJointPublisher::setJointVelocityCb(const sensor_msgs::msg::JointState::SharedPtr msg) {
     for (auto i = 0u; i < msg->velocity.size(); ++i) {
 //        if (joint_names_map_.find(msg->name[i]) != joint_names_map_.end()) {
-            //find joint name in `joint_names_` .
+        //find joint name in `joint_names_` .
 //            int idx = joint_names_map_[msg->name[i]];
-        int idx = i;
-            ignition::msgs::Double ign_msg;
-            ign_msg.set_data(msg->velocity[i]);
-            ign_cmd_joint_pubs_[idx]->Publish(ign_msg);
+        ignition::msgs::Double ign_msg;
+        ign_msg.set_data(msg->velocity[i]);
+        ign_cmd_joint_pubs_[i]->Publish(ign_msg);
+//        }
+    }
+}
+void IGNJointPublisher::setJointPositionCb(const sensor_msgs::msg::JointState::SharedPtr msg_goal, const sensor_msgs::msg::JointState::SharedPtr msg_cur)
+    {
+    for (auto i = 0u; i < msg_goal->position.size(); ++i) {
+//        if (joint_names_map_.find(msg->name[i]) != joint_names_map_.end()) {
+        //find joint name in `joint_names_` .
+//            int idx = joint_names_map_[msg->name[i]];
+        double val = 3*(msg_goal->position[i] - msg_cur->position[i]);
+        ignition::msgs::Double ign_msg;
+        ign_msg.set_data(val);
+        ign_cmd_joint_pubs_[i]->Publish(ign_msg);
 //        }
     }
 }

@@ -332,13 +332,12 @@
             <self_collide>1</self_collide>
         </link>
 
-
         <joint name="ft_joint" type="fixed">
                 			<pose relative_to="wrist_3_link">0 0 0 0 -0 0</pose>
                 			<parent>wrist_3_link</parent>
                 			<child>ft_link</child>
                 			<axis>
-                				<xyz>0 1 0</xyz>
+                				<xyz>0 0 1</xyz>
                 			</axis>
                 			<sensor name="force_torque_sensor" type="force_torque">
                                         <update_rate>100</update_rate>
@@ -347,7 +346,7 @@
                                         <topic>/world/default/model/ur10/force_torque</topic>
                                         <force_torque>
                                           <frame>sensor</frame>
-                                          <measure_direction>parent_to_child</measure_direction>
+                                          <measure_direction>child_to_parent</measure_direction>
                                         </force_torque>
                                       </sensor>
                 		</joint>
@@ -420,9 +419,6 @@
             <i_min>-10.0</i_min>
         </plugin>
 
-        <plugin filename="WrenchControl" name="ignition::gazebo::systems::WrenchControl">
-                    <link_name>ft_link</link_name>
-                </plugin>
 
     </xmacro_define_block>
 </sdf>

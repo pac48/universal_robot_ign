@@ -34,9 +34,9 @@ void IGNWrenchPublisher::setWrenchCb(const geometry_msgs::msg::Wrench::SharedPtr
     force->set_y(msg->force.y);
     force->set_z(msg->force.z);
 
-    torque->set_x(msg->force.x);
-    torque->set_y(msg->force.y);
-    torque->set_z(msg->force.z);
+    torque->set_x(msg->torque.x);
+    torque->set_y(msg->torque.y);
+    torque->set_z(msg->torque.z);
 
     wrench_msg.set_allocated_force(force);
     wrench_msg.set_allocated_torque(torque);

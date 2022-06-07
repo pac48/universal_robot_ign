@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.7">
-    <!--include defination-->
+    <!--include definition-->
     <xmacro_include uri="model://ur10/ur10.def.xmacro" />
     <xmacro_include uri="model://robotiq140/robotiq140.def.xmacro" />
     <!--model-->
@@ -40,6 +40,9 @@
             <joint_name>right_inner_knuckle_joint</joint_name>
             <joint_name>right_outer_knuckle_joint</joint_name>
             <joint_name>right_inner_finger_joint</joint_name>
+        </plugin>
+        <plugin filename="WrenchControl" name="ignition::gazebo::systems::WrenchControl">
+            <link_name>robotiq_arg2f_base_link</link_name>
         </plugin>
     </model>
 </sdf>
